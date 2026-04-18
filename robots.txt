@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ferreiraadv.com.br/sitemap.xml
+Sitemap: https://tavaresdev.com.br/sitemap.xml

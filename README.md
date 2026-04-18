@@ -117,26 +117,5 @@ O chat do front ja suporta dois caminhos:
 
 Para configuracao completa de automacao e IA juridica, consulte o arquivo GUIA-IMPLANTACAO.md.
 
-## 11. Checklist de Go-Live
 
-- Conferir dados de contato no HTML
-- Conferir dominio oficial nas metas e sitemap
-- Validar renderizacao mobile
-- Testar links internos do menu e CTAs
-- Testar comportamento do chat
-- Validar robots.txt e sitemap.xml publicados
-- Rodar auditoria no Lighthouse (Performance, SEO, Accessibility)
 
-## 12. Manutencao
-
-Quando houver alteracao de dominio ou marca, atualizar no mesmo momento:
-
-- index.html (meta tags e dados de contato)
-- robots.txt
-- sitemap.xml
-
-Isso evita perda de indexacao e inconsistencias em compartilhamento social.
-
-## 13. Status
-
-Projeto pronto para deploy estatico na Vercel.
