@@ -27,7 +27,15 @@ Nao ha dependencia de npm, yarn, pnpm, Python ou PHP para renderizar a landing. 
 - index.html: pagina principal, estilos, scripts e widget de chat
 - robots.txt: regras basicas de rastreamento para motores de busca
 - sitemap.xml: sitemap da pagina principal
-- GUIA-IMPLANTACAO.md: guia separado para fluxo IA juridico e integracoes (Vercel, n8n, Supabase e DNS)
+- vercel.json: headers de seguranca para deploy
+- .env.example: modelo de variaveis de ambiente para integracoes
+- scripts/generate-config.js: gera config.js local a partir do .env
+- config/config.example.js: modelo de runtime config
+- admin/admin-dashboard.html: painel admin local
+- n8n/workflow-advocacia-n8n.json: export do workflow n8n
+- docs-local/: documentacao operacional local (nao versionada no Git)
+
+Obs: `config.js` e gerado localmente e fica ignorado no Git.
 
 ## 4. Conteudo da Landing
 
@@ -123,7 +131,22 @@ O chat tambem suporta captura de lead no Supabase quando detectar no dialogo:
 - Contato (e-mail ou telefone)
 - Area juridica
 
-Para configuracao completa de automacao e IA juridica, consulte o arquivo GUIA-IMPLANTACAO.md.
+## 11. Configuracao Segura (sem hardcode)
+
+1. Copie `.env.example` para `.env`
+2. Preencha as variaveis:
+    - N8N_WEBHOOK_URL
+    - SUPABASE_URL
+    - SUPABASE_ANON_KEY
+    - SUPABASE_LEADS_TABLE
+3. Gere o arquivo de runtime:
+
+    node scripts/generate-config.js
+
+4. Verifique se o arquivo `config.js` foi criado na raiz do projeto
+5. Suba para Vercel sem incluir segredos no Git
+
+Para configuracao completa de automacao e IA juridica, consulte docs-local/GUIA-IMPLANTACAO.md (arquivo local, fora do versionamento).
 
 
 

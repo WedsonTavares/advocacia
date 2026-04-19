@@ -1,0 +1,8 @@
+window.APP_CONFIG = {
+  CHATWOOT_TOKEN: '',
+  CHATWOOT_URL: '',
+  N8N_WEBHOOK_URL: '',
+  SUPABASE_URL: '',
+  SUPABASE_ANON_KEY: '',
+  SUPABASE_LEADS_TABLE: 'chat_leads'
+};

@@ -8,6 +8,9 @@
 !.env.example
 !.env.sample
 
+# Runtime config generated from .env
+config.js
+
 # Workflow exports (do not publish)
 workflow*.json
 *workflow*.json

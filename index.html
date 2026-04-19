@@ -1029,41 +1029,33 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </div>
 
 <script>
+window.APP_CONFIG = window.APP_CONFIG || {};
+</script>
+<script src="./config.js"></script>
+<script>
 /* ══════════════════════════════════════════
-   CONFIGURAÇÃO — preencha com seus dados
+  CONFIGURAÇÃO
    ══════════════════════════════════════════
 
-   OPÇÃO A) Chatwoot (recomendado para produção)
-   1. Descomente o bloco CHATWOOT abaixo
-   2. Troque WEBSITE_TOKEN e BASE_URL pelos seus
-   3. O widget do Chatwoot vai substituir o chat local
-
-   OPÇÃO B) Webhook direto n8n (sem Chatwoot)
-   1. Descomente N8N_WEBHOOK_URL abaixo
-   2. O chat local envia a mensagem pro seu webhook n8n
-
-   OPÇÃO C) Captura de formulário no Supabase
-   1. Descomente SUPABASE_URL e SUPABASE_ANON_KEY
-   2. O chat salva lead no Supabase quando detectar nome + contato + área
+  1) Preencha o arquivo .env (base: .env.example)
+  2) Execute: node scripts/generate-config.js
+  3) O script gera config.js (ignorado pelo Git)
+  4) A aplicação lê os dados de window.APP_CONFIG
    ══════════════════════════════════════════ */
 
-// const CHATWOOT_TOKEN  = 'SEU_WEBSITE_TOKEN_AQUI';
-// const CHATWOOT_URL    = 'https://app.chatwoot.com'; // ou sua URL self-hosted
-// const N8N_WEBHOOK_URL = 'https://n8n.zeus-estoque.com.br/webhook/atendimento-juridico';
-// const SUPABASE_URL = 'https://SEU-PROJETO.supabase.co';
-// const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANON';
-// const SUPABASE_LEADS_TABLE = 'chat_leads';
+const APP_CONFIG = window.APP_CONFIG || {};
+const CHATWOOT_TOKEN = APP_CONFIG.CHATWOOT_TOKEN || '';
+const CHATWOOT_URL = APP_CONFIG.CHATWOOT_URL || '';
+const N8N_WEBHOOK_URL = APP_CONFIG.N8N_WEBHOOK_URL || '';
+const SUPABASE_URL = APP_CONFIG.SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = APP_CONFIG.SUPABASE_ANON_KEY || '';
+const SUPABASE_LEADS_TABLE = APP_CONFIG.SUPABASE_LEADS_TABLE || 'chat_leads';
 
 // ── Detecta se Chatwoot foi configurado ──
-const USAR_CHATWOOT = typeof CHATWOOT_TOKEN !== 'undefined' && CHATWOOT_TOKEN;
-const USAR_N8N      = typeof N8N_WEBHOOK_URL !== 'undefined' && N8N_WEBHOOK_URL;
-const USAR_SUPABASE = typeof SUPABASE_URL !== 'undefined'
-  && SUPABASE_URL
-  && typeof SUPABASE_ANON_KEY !== 'undefined'
-  && SUPABASE_ANON_KEY;
-const SUPABASE_TABLE = typeof SUPABASE_LEADS_TABLE !== 'undefined' && SUPABASE_LEADS_TABLE
-  ? SUPABASE_LEADS_TABLE
-  : 'chat_leads';
+const USAR_CHATWOOT = Boolean(CHATWOOT_TOKEN);
+const USAR_N8N = Boolean(N8N_WEBHOOK_URL);
+const USAR_SUPABASE = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+const SUPABASE_TABLE = SUPABASE_LEADS_TABLE;
 
 // ── Injeta SDK do Chatwoot se configurado ──
 if (USAR_CHATWOOT) {
