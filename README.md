@@ -1,6 +1,6 @@
 # Landing Page - Ferreira & Associados
 
-Landing page institucional de advocacia, feita em HTML, CSS e JavaScript puro, com foco em apresentacao premium, responsividade, conversao e preparo para deploy estatico na Vercel.
+Landing page institucional de advocacia, feita em HTML, CSS e JavaScript puro, com foco em apresentacao premium, responsividade, conversao e preparo para deploy estatico na Vercel com integracao de chat IA via n8n e captura de leads no Supabase.
 
 ## 1. Visao Geral
 
@@ -17,16 +17,17 @@ Este projeto entrega uma pagina unica para escritorio juridico com:
 - HTML5
 - CSS3 (inline no proprio arquivo)
 - JavaScript Vanilla (sem frameworks)
+- Integracoes externas via fetch (n8n + Supabase REST)
 - Deploy estatico (sem etapa de build obrigatoria)
 
-Nao ha dependencia de npm, yarn, pnpm, Python, PHP ou banco de dados para a landing funcionar.
+Nao ha dependencia de npm, yarn, pnpm, Python ou PHP para renderizar a landing. Banco e automacoes rodam em servicos externos (Supabase e n8n).
 
 ## 3. Estrutura de Arquivos
 
 - index.html: pagina principal, estilos, scripts e widget de chat
 - robots.txt: regras basicas de rastreamento para motores de busca
 - sitemap.xml: sitemap da pagina principal
-- GUIA-IMPLANTACAO.md: guia separado para fluxo IA juridico e integracoes (n8n, RAG, Redis, CRM etc.)
+- GUIA-IMPLANTACAO.md: guia separado para fluxo IA juridico e integracoes (Vercel, n8n, Supabase e DNS)
 
 ## 4. Conteudo da Landing
 
@@ -106,14 +107,21 @@ Fluxo recomendado:
    - Output Directory: .
 4. Fazer deploy
 5. Conectar dominio customizado
-6. Validar URL final e atualizar referencias de SEO se necessario
+6. Para subdominio (ex.: advocacia.zeusacademy.com.br), configurar CNAME no Registro.br apontando para o target informado na Vercel
+7. Validar URL final e atualizar referencias de SEO se necessario
 
 ## 10. Integracao do Chat
 
 O chat do front ja suporta dois caminhos:
 
 - Modo local: respostas demo no proprio navegador
-- Modo webhook: envio para fluxo externo (ex.: n8n)
+- Modo webhook: envio para fluxo externo (n8n)
+
+O chat tambem suporta captura de lead no Supabase quando detectar no dialogo:
+
+- Nome
+- Contato (e-mail ou telefone)
+- Area juridica
 
 Para configuracao completa de automacao e IA juridica, consulte o arquivo GUIA-IMPLANTACAO.md.
 

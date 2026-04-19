@@ -1,0 +1,13 @@
+# Keep only the main README in Git
+**/*.md
+!README.md
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Workflow exports (do not publish)
+workflow*.json
+*workflow*.json
