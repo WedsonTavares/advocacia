@@ -1,4 +1,4 @@
-# Landing Page - Ferreira & Associados
+# Landing Page Tavares & Associados
 
 Landing page institucional de advocacia, feita em HTML, CSS e JavaScript puro, com foco em apresentacao premium, responsividade, conversao e preparo para deploy estatico na Vercel com integracao de chat IA via n8n e captura de leads no Supabase.
 
@@ -15,7 +15,7 @@ Este projeto entrega uma pagina unica para escritorio juridico com:
 ## 2. Stack e Abordagem
 
 - HTML5
-- CSS3 (inline no proprio arquivo)
+- CSS3 (arquivos externos)
 - JavaScript Vanilla (sem frameworks)
 - Integracoes externas via fetch (n8n + Supabase REST)
 - Deploy estatico (sem etapa de build obrigatoria)
@@ -24,7 +24,11 @@ Nao ha dependencia de npm, yarn, pnpm, Python ou PHP para renderizar a landing. 
 
 ## 3. Estrutura de Arquivos
 
-- index.html: pagina principal, estilos, scripts e widget de chat
+- index.html: pagina principal e widget de chat
+- styles/index.css: estilos da landing
+- styles/admin.css: estilos do painel admin
+- scripts/index.js: comportamento da landing e chat
+- scripts/admin.js: logica do dashboard admin
 - robots.txt: regras basicas de rastreamento para motores de busca
 - sitemap.xml: sitemap da pagina principal
 - vercel.json: headers de seguranca para deploy
@@ -136,15 +140,24 @@ O chat tambem suporta captura de lead no Supabase quando detectar no dialogo:
 1. Copie `.env.example` para `.env`
 2. Preencha as variaveis:
     - N8N_WEBHOOK_URL
+    - ADMIN_CONVERSAS_ENDPOINT (opcional)
+    - ADMIN_LOGS_ENDPOINT (opcional)
     - SUPABASE_URL
     - SUPABASE_ANON_KEY
     - SUPABASE_LEADS_TABLE
+    - SUPABASE_CONVERSAS_TABLE (opcional)
+    - SUPABASE_LOGS_TABLE (opcional)
 3. Gere o arquivo de runtime:
 
     node scripts/generate-config.js
 
 4. Verifique se o arquivo `config.js` foi criado na raiz do projeto
 5. Suba para Vercel sem incluir segredos no Git
+
+No painel admin, os dados reais sao lidos de:
+- Supabase: `SUPABASE_LEADS_TABLE` (obrigatorio para leads)
+- Supabase: `SUPABASE_CONVERSAS_TABLE` e `SUPABASE_LOGS_TABLE` (opcional)
+- Endpoints HTTP: `ADMIN_CONVERSAS_ENDPOINT` e `ADMIN_LOGS_ENDPOINT` (opcional)
 
 Para configuracao completa de automacao e IA juridica, consulte docs-local/GUIA-IMPLANTACAO.md (arquivo local, fora do versionamento).
 
