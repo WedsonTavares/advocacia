@@ -9,7 +9,7 @@
 !.env.sample
 
 # Runtime config generated from .env
-config.js
+# config.js agora é versionado para o deploy estático funcionar sem etapa extra no build.
 
 # Workflow exports (do not publish)
 workflow*.json
